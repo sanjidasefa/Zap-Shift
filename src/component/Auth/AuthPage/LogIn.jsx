@@ -36,7 +36,7 @@ const onError = (errors) => {
             errors.password?.type ==='pattern' && <p className="text-red-600">please Give at least 8 Character and One UpperCase , One LowerCase , One Digit . </p>
            }
            
-          <button type="submit" className="btn btn-neutral mt-4">Login</button>
+          <button type="submit" className="btn btn-neutral mt-4">Sign In</button>
         </fieldset>
       </form>
       <div>
