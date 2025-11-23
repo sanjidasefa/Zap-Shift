@@ -4,6 +4,9 @@ import Loading from "../component/extra/Loading";
 import Home from "../pages/Home";
 import Coverage from "../pages/Coverage";
 import Service from "../pages/Service";
+import AuthLayout from "../Layouts/AuthLayout";
+import LogIn from "../component/Auth/AuthPage/LogIn";
+import SignUp from "../component/Auth/AuthPage/SignUp";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +26,21 @@ export const router = createBrowserRouter([
       {
         path: '/Service',
         element: <Service></Service>
+      }
+    ]
+  },
+  {
+    path: '/',
+    element : <AuthLayout></AuthLayout>,
+     hydrateFallbackElement: <Loading></Loading>,
+    children : [
+      {
+        path : 'Login',
+        element : <LogIn></LogIn>
+      },
+      {
+        path : '/Resister' , 
+        element : <SignUp></SignUp>
       }
     ]
   }

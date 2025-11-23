@@ -3,7 +3,7 @@ import Logo from '../extra/Logo'
 const Footer = () => {
   return (
     <div>
-     <footer className="footer sm:footer-horizontal bg-base-200 text-secondary p-10">
+     <footer className="footer  sm:footer-horizontal bg-base-200 text-secondary border-2 border-t-primary shadow-2xl p-10">
 
   <nav>
     <h6 className="footer-title">Services</h6>
@@ -26,7 +26,7 @@ const Footer = () => {
     <a className="link link-hover">Cookie policy</a>
   </nav>
 </footer>
-<footer className="footer bg-base-200 text-base-content border-base-300 border-t py-5 px-10 grid-flow-col s-center justify-between">
+<footer className="footer  bg-base-200 text-base-content border-secondary border-t py-5 px-10 grid-flow-col s-center justify-between">
   <aside className="">
    <Logo></Logo>
   </aside>

@@ -43,17 +43,17 @@ const Navber = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu gap-2 font-semibold text-secondary text-sm menu-horizontal px-1">
              <Link to='/'> <li> Home </li></Link>
-             <Link> <li> Services </li></Link>
+             <Link to='/Service'> <li> Services </li></Link>
              <Link to='/Covarage-Area'>  <li> Coverage </li></Link>
              <Link><li>Pricing </li></Link> 
              <Link><li>Be a Rider</li></Link> 
           </ul>
         </div>
         <div className="navbar-end">
-              <Link className=" btn font-semibold border-2 border-secondary">
+              <Link to='Login' className=" btn font-semibold border-2 border-secondary">
                         Sign In
                       </Link>
-                      <Link className="btn ml-3 bg-primary outline-0">Sign Up</Link>
+                      <Link to='/Resister' className="btn ml-3 bg-primary outline-0">Sign Up</Link>
         </div>
       </div>
     </div>
