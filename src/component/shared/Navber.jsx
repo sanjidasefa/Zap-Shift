@@ -1,9 +1,15 @@
 import React from "react";
 import Logo from "../extra/Logo";
 import { Link } from "react-router";
-
+import useAuth from "../../hooks/useAuth";
 
 const Navber = () => {
+  const { logOut, user } = useAuth();
+  const handleSignOut = () => {
+    logOut()
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
   return (
     <div>
       <div className="navbar bg-white border-b-2 border-primary shadow-xl p-4">
@@ -27,33 +33,76 @@ const Navber = () => {
               </svg>
             </div>
             <ul
-            
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-             <Link to='/'> <li> Home </li></Link>
-             <Link to='/Service'> <li> Services </li></Link>
-             <Link to='/Covarage-Area'>  <li> Coverage </li></Link>
-             <Link><li>Pricing </li></Link> 
-             <Link><li>Be a Rider</li></Link> 
+             
+              <Link to="/Service">
+                {" "}
+                <li> Services </li>
+              </Link>
+              <Link to="/Covarage-Area">
+                {" "}
+                <li> Coverage </li>
+              </Link>
+              <Link to="/About-Us">
+                {" "}
+                <li>About-Us</li>
+              </Link>
+              <Link to='/Pricing'>
+                <li>Pricing </li>
+              </Link>
+              <Link to='/Send-Service'>
+                <li>Send-Service </li>
+              </Link>
+            
             </ul>
           </div>
           <Logo></Logo>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu gap-2 font-semibold text-secondary text-sm menu-horizontal px-1">
-             <Link to='/'> <li> Home </li></Link>
-             <Link to='/Service'> <li> Services </li></Link>
-             <Link to='/Covarage-Area'>  <li> Coverage </li></Link>
-             <Link><li>Pricing </li></Link> 
-             <Link><li>Be a Rider</li></Link> 
+            
+            <Link to="/Service">
+              {" "}
+              <li> Services </li>
+            </Link>
+            <Link to="/Covarage-Area">
+              {" "}
+              <li> Coverage </li>
+            </Link>
+            <Link to="/About-Us">
+              {" "}
+              <li>About-Us</li>
+            </Link>
+            <Link to='/Pricing'>
+              <li>Pricing </li>
+            </Link>
+             <Link to='/Send-Service'>
+                <li>Send-Service </li>
+              </Link>
+            
           </ul>
         </div>
         <div className="navbar-end">
-              <Link to='Login' className=" btn font-semibold border-2 border-secondary">
-                        Sign In
-                      </Link>
-                      <Link to='/Resister' className="btn ml-3 bg-primary outline-0">Sign Up</Link>
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className=" btn font-semibold border-2 border-secondary"
+            >
+              Sign Out
+            </button>
+          ) : (
+            <Link
+              to="Login"
+              className=" btn font-semibold border-2 border-secondary"
+            >
+              Sign In
+            </Link>
+          )}
+          <Link to="/Be-A-Rider" className="btn ml-3 bg-primary outline-0">
+            Be a Rider
+          </Link>
         </div>
       </div>
     </div>

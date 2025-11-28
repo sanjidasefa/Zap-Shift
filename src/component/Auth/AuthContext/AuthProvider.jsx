@@ -1,37 +1,66 @@
-import React from 'react';
-import { AuthContext } from './AuthContext';
-import { CgPassword } from 'react-icons/cg';
-import { auth } from '../../../fairbase/firebase.config';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import React, { useEffect, useState } from "react";
+import { AuthContext } from "./AuthContext";
+import { auth } from "../../../fairbase/firebase.config";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth/web-extension";
 
-const provider = new GoogleAuthProvider()
-const AuthProvider = ({children}) => {
-  const createUser = (email , password) => {
-   return createUserWithEmailAndPassword(auth ,email , password)
-  }
+const provider = new GoogleAuthProvider();
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoding] = useState(true);
+  const createUser = (email, password) => {
+    setLoding(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-  const signIn = (email , password) => {
-    return signInWithEmailAndPassword(auth , email, password)
-  }
+  const signIn = (email, password) => {
+    setLoding(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   const logOut = () => {
-    return signOut(auth )
-  }
+    setLoding(true);
+    return signOut(auth);
+  };
 
-   const google = ()=>{
-    return signInWithPopup(auth,provider)
-   }
+  const google = () => {
+    setLoding(true);
+    return signInWithPopup(auth, provider);
+  };
+
+  const forgotPass = (email) => {
+    setLoding(true);
+    return sendPasswordResetEmail(auth, email);
+  };
+
+  useEffect(() => {
+    const unSubsCribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoding(false);
+    });
+    return () => {
+      unSubsCribe();
+    };
+  }, []);
+
   const getInfo = {
+    user,
+    loading,
+    setLoding,
     createUser,
-    signIn ,
-    logOut,  
+    signIn,
+    logOut,
     google,
-  }
-  return (
-    <AuthContext value={getInfo}>
-      {children}
-    </AuthContext>
-  );
+    forgotPass,
+  };
+  return <AuthContext value={getInfo}>{children}</AuthContext>;
 };
 
 export default AuthProvider;

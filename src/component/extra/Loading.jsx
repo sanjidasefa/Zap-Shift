@@ -1,4 +1,5 @@
 import React from 'react';
+import { Commet } from 'react-loading-indicators';
 
 const Loading = () => {
   return (

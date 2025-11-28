@@ -7,6 +7,12 @@ import Service from "../pages/Service";
 import AuthLayout from "../Layouts/AuthLayout";
 import LogIn from "../component/Auth/AuthPage/LogIn";
 import SignUp from "../component/Auth/AuthPage/SignUp";
+import Error from "../pages/Error";
+import About from "../pages/About";
+import BeARider from "../pages/BeARider";
+import PrivateRoute from "./PrivateRoute";
+import SendService from "../pages/SendService";
+import Pricing from "../pages/Pricing";
 
 export const router = createBrowserRouter([
   {
@@ -26,7 +32,24 @@ export const router = createBrowserRouter([
       {
         path: '/Service',
         element: <Service></Service>
-      }
+      },
+      {
+        path: '/About-Us',
+        element: <About></About>
+      },
+      {
+        path: '/Be-A-Rider',
+        element: <PrivateRoute><BeARider></BeARider></PrivateRoute>
+      },
+      {
+        path: '/Send-Service',
+        element: <PrivateRoute><SendService></SendService></PrivateRoute>,
+          loader : () => fetch('warehouses.json').then(res=> res.json())
+      },
+      {
+        path: '/Pricing',
+        element: <PrivateRoute><Pricing></Pricing></PrivateRoute>
+      },
     ]
   },
   {
@@ -43,5 +66,9 @@ export const router = createBrowserRouter([
         element : <SignUp></SignUp>
       }
     ]
+  },
+  {
+      path: '*', 
+      element: <Error></Error>
   }
 ])

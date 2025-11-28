@@ -42,7 +42,7 @@ const Brands = () => {
     </Swiper>
 
     <div className='my-10 lg:my-20'>
-      <div className='flex my-5 s-center bg-gray-200 rounded-2xl p-5 '>
+      <div className='flex my-5 s-center bg-white rounded-2xl p-5 '>
 
       <div >
         <img src={live} alt="" className='w-full'/>
@@ -63,7 +63,7 @@ const Brands = () => {
         <p className='text-secondary text-lg '>We ensure your parcels are handled with the utmost care and delivered securely to their destination. Our reliable process guarantees safe and damage-free delivery every time.</p>
       </div>
     </div>
-    <div className='flex  bg-gray-200 rounded-2xl p-5 s-center'>
+    <div className='flex  bg-white rounded-2xl p-5 s-center'>
       <div >
         <img src={safe} alt="" />
       </div>
