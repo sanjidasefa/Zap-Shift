@@ -52,8 +52,9 @@ const Navber = () => {
               <Link to='/Pricing'>
                 <li>Pricing </li>
               </Link>
-              <Link to='/Send-Service'>
-                <li>Send-Service </li>
+              
+              <Link to='/Dashboard'>
+                <li>Dashboard </li>
               </Link>
             
             </ul>
@@ -78,10 +79,12 @@ const Navber = () => {
             <Link to='/Pricing'>
               <li>Pricing </li>
             </Link>
-             <Link to='/Send-Service'>
-                <li>Send-Service </li>
-              </Link>
             
+           {
+            user ?  <Link to='/Dashboard'>
+                <li>Dashboard </li>
+              </Link> : ''
+           }
           </ul>
         </div>
         <div className="navbar-end">

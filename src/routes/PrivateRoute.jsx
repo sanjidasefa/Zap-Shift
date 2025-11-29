@@ -11,12 +11,13 @@ const PrivateRoute = ({ children }) => {
     return (
       <div className="max-w-7xl mx-auto flex justify-center items-center py-20">
         <img src={loadingImg} alt="" className="w-xs" />
+        <h1 className='text-2xl text-center my-3 '>Loding...</h1>
       </div>
     );
   }
 
   if (!user) {
-    return <Navigate to="/login" state={location.pathname} />;
+    return <Navigate to="/login" state={location.pathname} replace/>;
   }
 
   return children;

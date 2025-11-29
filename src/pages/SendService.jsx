@@ -2,9 +2,13 @@ import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
+import useAuth from '../hooks/useAuth';
+import useUserSecure from '../hooks/useUserSecure';
 
 const SendService = () => {
   const loadData = useLoaderData()
+  const {user} = useAuth()
+  const secureInfo = useUserSecure()
  // console.log(loadData)
   const duplicateRegion = loadData.map(c=> c.region)
   const region = [...new Set(duplicateRegion)]
@@ -50,6 +54,10 @@ const SendService = () => {
   confirmButtonText: "Send Percel"
 }).then((result) => {
   if (result.isConfirmed) {
+    secureInfo.post('/SendPercels' , data)
+    .then(res =>{
+      console.log(res.data)
+    })
     Swal.fire({
       title: "Approved",
       text: "your selected percel send.",
@@ -83,7 +91,7 @@ const SendService = () => {
          <div className='flex gap-8'>
           <div className='w-full'>
                <h1 className='text-sm text-secondary font-semibold mb-2'>Parcel Name : </h1>
-            {/* <label htmlFor=""></label> */}
+         
             <input type="text"  {...register('PercelName' , {required: true})} placeholder="Percel Name" className="input input-primary  " />
          {
             errors.PercelName?.type ==='required' && <p className="text-red-600">Please Enter Percel Name</p>
@@ -101,13 +109,13 @@ const SendService = () => {
          <div className='w-full'>
            <h1 className='font-bold text-lg text-secondary mb-3'>Sender Details</h1>
           <label htmlFor="" className='block text-sm text-secondary font-semibold mb-2'>Sender Name :</label>
-           <input type="text"  {...register('senderName' , {required: true})} placeholder="Sender Name" className="input input-primary  " />
+           <input type="text" defaultValue={user.displayName} {...register('senderName' , {required: true})} placeholder="Sender Name" className="input input-primary  " />
           {
             errors.SenderName?.type ==='required' && <p className="text-red-600">Plese Enter Sender Name</p>
           }
 
         <label htmlFor="" className='block text-sm text-secondary font-semibold mb-2'>Sender Email :</label>
-           <input type="email"  {...register('senderEmail' , {required: true})} placeholder="Sender Email" className="input input-primary  " />
+           <input type="email" defaultValue={user.email}  {...register('senderEmail' , {required: true})} placeholder="Sender Email" className="input input-primary  " />
           {
             errors.SenderEmail?.type ==='required' && <p className="text-red-600">Plese Enter Sender Email</p>
           }

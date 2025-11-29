@@ -1,10 +1,10 @@
 import React from 'react';
 import Logo from '../extra/Logo'
+import { Link } from 'react-router';
 const Footer = () => {
   return (
     <div>
-     <footer className="footer  sm:footer-horizontal bg-base-200 text-secondary border-2 border-t-primary shadow-2xl p-10">
-
+     <footer className="footer bg-secondary sm:footer-horizontal justify-around  text-white border-3 border-t-primary shadow-2xl p-10">
   <nav>
     <h6 className="footer-title">Services</h6>
     <a className="link link-hover">Branding</a>
@@ -14,9 +14,9 @@ const Footer = () => {
   </nav>
   <nav>
     <h6 className="footer-title">Company</h6>
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
+    <Link to='/About-Us' className="link link-hover">About us</Link>
+    <Link className="link link-hover">Contact</Link>
+    <Link to='/Dashboard' className="link link-hover">DashBoard</Link>
     <a className="link link-hover">Press kit</a>
   </nav>
   <nav>
@@ -25,12 +25,8 @@ const Footer = () => {
     <a className="link link-hover">Privacy policy</a>
     <a className="link link-hover">Cookie policy</a>
   </nav>
-</footer>
-<footer className="footer  bg-base-200 text-base-content border-secondary border-t py-5 px-10 grid-flow-col s-center justify-between">
-  <aside className="">
-   <Logo></Logo>
-  </aside>
   <nav className="">
+     <h6 className="footer-title">Social Links</h6>
     <div className="grid grid-flow-col gap-4">
       <a>
         <svg
@@ -67,6 +63,11 @@ const Footer = () => {
       </a>
     </div>
   </nav>
+</footer>
+<footer className="footer  text-base-content flex justify-center items-center py-5 px-10 ">
+  <aside className="">
+   <Logo></Logo>
+  </aside>
 </footer>
     </div>
   );

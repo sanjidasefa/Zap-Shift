@@ -13,6 +13,9 @@ import BeARider from "../pages/BeARider";
 import PrivateRoute from "./PrivateRoute";
 import SendService from "../pages/SendService";
 import Pricing from "../pages/Pricing";
+import DashBoardLayout from "../Layouts/DashBoardLayout";
+import MyPercel from "../component/Dashboard/MyPercel";
+import AllDelivery from "../component/Dashboard/AllDelivery";
 
 export const router = createBrowserRouter([
   {
@@ -62,9 +65,23 @@ export const router = createBrowserRouter([
         element : <LogIn></LogIn>
       },
       {
-        path : '/Resister' , 
+        path : 'Resister' , 
         element : <SignUp></SignUp>
       }
+    ]
+  },
+  {
+    path : 'Dashboard' , 
+    element : <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
+    children : [
+      {
+         path: 'My-Percel',
+         element : <MyPercel></MyPercel>
+      },
+      {
+         path: 'All-deliverys',
+         element : <AllDelivery></AllDelivery>
+      },  
     ]
   },
   {
