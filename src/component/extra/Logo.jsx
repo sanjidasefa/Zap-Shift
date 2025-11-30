@@ -9,7 +9,7 @@ const Logo = () => {
      <Link to="/">
               {" "}
              
-     <h1 className='text-3xl font-bold -ms-2.5 mt-4'>Zap Shift</h1>
+     <h1 className='text-3xl font-bold -ms-2.5 mt-4 text-secondary'>Zap Shift</h1>
             </Link>
     </div>
   );

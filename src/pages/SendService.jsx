@@ -43,7 +43,8 @@ const SendService = () => {
   }
  }
  console.log(cost)
-
+ data.cost = cost ;
+ data.createdAt = new Date().toLocaleDateString()
   Swal.fire({
   title: "Are you sure?",
   text: `Your Total Cost :  ${cost} tk`,
