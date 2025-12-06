@@ -69,7 +69,7 @@ const SendService = () => {
 
  }
   return (
-    <div className="w-11/12 mx-auto py-6 md:p-20">
+    <div className="w-11/12 mx-auto ">
       <div className="bg-white rounded-2xl p-10 md:p-20">
       <h1 className="text-2xl md:text-4xl font-bold text-secondary ">
         Send A Parcel 

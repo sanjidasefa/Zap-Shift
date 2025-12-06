@@ -16,6 +16,7 @@ import Pricing from "../pages/Pricing";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import MyPercel from "../component/Dashboard/MyPercel";
 import AllDelivery from "../component/Dashboard/AllDelivery";
+import Payment from "../component/Dashboard/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -44,11 +45,7 @@ export const router = createBrowserRouter([
         path: '/Be-A-Rider',
         element: <PrivateRoute><BeARider></BeARider></PrivateRoute>
       },
-      {
-        path: '/Send-Service',
-        element: <PrivateRoute><SendService></SendService></PrivateRoute>,
-          loader : () => fetch('warehouses.json').then(res=> res.json())
-      },
+      
       {
         path: '/Pricing',
         element: <PrivateRoute><Pricing></Pricing></PrivateRoute>
@@ -79,9 +76,18 @@ export const router = createBrowserRouter([
          element : <MyPercel></MyPercel>
       },
       {
+        path: 'Payment/:parcelId',
+        element: <Payment></Payment>,
+      },
+      {
          path: 'All-deliverys',
          element : <AllDelivery></AllDelivery>
       },  
+      {
+        path: 'Send-Service',
+        element: <SendService></SendService>,
+          loader : () => fetch('/warehouses.json').then(res=> res.json())
+      },
     ]
   },
   {

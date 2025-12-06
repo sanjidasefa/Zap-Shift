@@ -39,15 +39,15 @@ const DashBoardLayout = () => {
             <span className="">Home</span>
           </Link>
         </li>
+  <li><Link to='/Dashboard/Send-Service' className="font-semibold" data-tip="Send-Service">
+                <MdOutlineSendTimeExtension /> <span> Send-Service </span>
+                </Link></li>
    <li>
       <Link className="font-semibold " to='My-Percel' data-tip='My-Percel'><MdOutlineHomeRepairService /><span >My-Percel</span></Link>
    </li>
   <li>
        <Link className="font-semibold" to='All-deliverys' data-tip='All-deliverys'><TbTruckDelivery /> <span>All-deliverys</span></Link>
   </li>
-  <li><Link to='/Send-Service' className="font-semibold" data-tip="Send-Service">
-                <MdOutlineSendTimeExtension /> <span> Send-Service </span>
-                </Link></li>
        </ul>
       <ul className="menu w-full ">
         <h1 className='text-secondary text-lg font-bold'>GENERAL</h1>

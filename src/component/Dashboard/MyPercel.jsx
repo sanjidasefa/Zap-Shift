@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import useUserSecure from "../../hooks/useUserSecure";
 import useAuth from "../../hooks/useAuth";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { BiEdit } from "react-icons/bi";
 import { FaSearch } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
+
 
 const MyPercel = () => {
   const axioxSecure = useUserSecure();
   const { user } = useAuth();
-  const { data: parcels = [] } = useQuery({
+  const { data: parcels = [], refetch,} = useQuery({
     queryKey: ["my-Percels", user.email],
     queryFn: async () => {
       const data = await axioxSecure.get(`/SendPercels?email=${user.email}`);
@@ -31,7 +32,8 @@ const MyPercel = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const data = await axioxSecure.delete(`/SendPercels/${id}`);
-        if (data.data.deletedCount > 0) {
+        if (data.data.deletedCount) {
+          refetch()
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
@@ -61,6 +63,8 @@ const MyPercel = () => {
                 <th> cost</th>
                 <th>createdAt</th>
                 <th>receiverName</th>
+                <th>Delivery Status</th>
+                <th>Payment Status</th>
                 <th> Actions </th>
               </tr>
             </thead>
@@ -85,6 +89,15 @@ const MyPercel = () => {
                       {parcel.receiverEmail}
                     </h1>
                   </th>
+                  <th>{parcel.deliveryStatus}</th>
+                  <td>
+  {parcel.parcelStatus === 'paid' 
+    ? <p className="btn btn-sm btn-primary text-black">Paid</p> 
+    : <Link to={`/Dashboard/Payment/${parcel._id}`} className="btn btn-sm border-2 border-primary bg-white">
+        Pay
+      </Link>
+  }
+</td>
                   <th className="flex ">
                     <button
                       className="btn btn-sm"
